@@ -2,6 +2,10 @@
 
 Willowbrook Farm is an original, offline-first, single-player cozy farming game for desktop browsers and iPad Safari. It is a static HTML/CSS/Canvas 2D application: there is no account, backend, tracking, build step, or network game service.
 
+## Language
+
+The game defaults to **Vietnamese (Tiếng Việt)**. English is also available — switch languages anytime from **Settings → Language**; the choice is remembered in `localStorage` (`wb-lang`) and applied immediately across the HUD, panels, toasts, and the tutorial. All translation strings live in `src/i18n.js`, and crop/animal/item/recipe/building/decoration/quest/achievement names carry both `name` (English) and `name_vi` (Vietnamese) fields in `src/data/content.js`.
+
 ## Play locally
 
 ES modules require an HTTP origin. From this directory run `python3 -m http.server 8000`, then open `http://localhost:8000`. This helper is only for local file serving; the deployed game has no server runtime or build command.
@@ -35,6 +39,7 @@ Open **Settings** to save immediately, export a portable JSON file, import a val
 ## Architecture
 
 * `src/main.js` coordinates gameplay and HTML UI.
+* `src/i18n.js` holds the Vietnamese/English UI string dictionaries, the current-language state (persisted to `localStorage`), and the `t()`/`nameOf()` helpers used throughout the UI and renderer.
 * `src/core/` owns IndexedDB persistence and generated Web Audio effects.
 * `src/rendering/` owns the bounded camera, high-DPI isometric Canvas renderer, animation, depth sorting, weather, and pooled particles.
 * `src/data/content.js` contains data-driven crops, animals, items, recipes, buildings, decorations, quests, and achievements.

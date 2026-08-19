@@ -12,7 +12,7 @@ ES modules require an HTTP origin. From this directory run `python3 -m http.serv
 
 ## Deploy to GitHub Pages
 
-A workflow at `.github/workflows/deploy-pages.yml` deploys the site automatically on every push to `main` using `actions/upload-pages-artifact` and `actions/deploy-pages`. To enable it, open **Settings → Pages** and set **Source** to **GitHub Actions** (one-time setup). Every URL in the game is relative, so it works at `username.github.io/repository-name/` without further configuration or secrets.
+A workflow at `.github/workflows/deploy-pages.yml` deploys the site automatically on every push to `main` (or `work`) using `actions/upload-pages-artifact` and `actions/deploy-pages` — it can also be run manually from the Actions tab. To enable it, open **Settings → Pages** and set **Source** to **GitHub Actions** (one-time setup). Every URL in the game is relative, so it works at `username.github.io/repository-name/` without further configuration or secrets. The included `.nojekyll` file ensures GitHub serves the static files directly instead of running them through Jekyll.
 
 ### Cache busting
 
@@ -27,6 +27,7 @@ Alternatively, without the workflow, open **Settings → Pages**, select **Deplo
 * Click a farm tile or object to interact; drag the world to pan.
 * Use the mouse wheel or the `+`/`−` buttons to zoom.
 * Use the bottom dock to plant, care for animals, craft, fish, sell, inspect storage, and build.
+* Press the `?` button at any time for the illustrated eight-step **How to Play** guide.
 
 ### iPad and touch
 
@@ -60,8 +61,17 @@ All content is defined in `src/data/content.js`:
 * **Building:** add a definition to `BUILDINGS` (or replace the generated mapping with an explicit object) with a unique ID, name, cost, level, and color. Recipe building names must match exactly.
 * **Decoration:** append a name to `dn`, or define another object with a unique ID, name, cost, beauty value, unlock level, and color.
 * **Recipe:** add a `RECIPES` entry whose key is an output item ID. Include `name`, exact `building` name, an `inputs` quantity map, `time`, and unlock `level`. Add the output to `ITEMS`.
+* **Sprinkler:** add a `SPRINKLERS` entry with `cost`, growth `boost` (0–1), unlock `level`, and a `description`.
+* **Pet:** add a `PETS` entry with `cost`, unlock `level`, `color`, and a `boost` type (`value`, `mutation`, or `growth`) with its `amount`.
+* **Mutation:** add a `MUTATIONS` entry with a `multiplier` and particle `color`; wire the roll odds into `canvasTap` in `src/main.js`.
 
 Refresh after editing; no compilation is required.
+
+## Advanced garden systems
+
+The Plant screen is a rotating seed shop. Buying a pack adds three seeds and equips that variety; limited Watermelon and Chili Pepper stock alternates every five minutes. Purchased seeds are consumed when planted, while harvested produce is stored separately for crafting or sale.
+
+Rare harvest rolls can produce **Giant**, **Colorful**, **Shiny**, or **Godly** mutations, awarding increasingly valuable coin and XP bonuses. The Build screen also sells three permanent sprinkler tiers and three farm pets. Sprinklers accelerate newly planted crops, while pets improve growth, crop value, or mutation luck. These systems are stored in the versioned local save and continue to work with offline crop timers.
 
 ## Privacy and credits
 

@@ -14,6 +14,10 @@ ES modules require an HTTP origin. From this directory run `python3 -m http.serv
 
 A workflow at `.github/workflows/deploy-pages.yml` deploys the site automatically on every push to `main` using `actions/upload-pages-artifact` and `actions/deploy-pages`. To enable it, open **Settings → Pages** and set **Source** to **GitHub Actions** (one-time setup). Every URL in the game is relative, so it works at `username.github.io/repository-name/` without further configuration or secrets.
 
+### Cache busting
+
+`index.html`'s stylesheet/script tags and every relative `import` between `src/*.js` modules carry a shared `?v=YYYYMMDD` query string (currently `20260819`), so browsers and GitHub Pages' CDN always fetch the latest file after a deploy instead of serving a stale cached copy. There is no build step to generate this automatically, so **bump that version string in every file whenever you ship a JS/CSS change** — a project-wide find-and-replace of the old value for a new one (e.g. today's date) across `index.html`, `src/main.js`, and `src/rendering/Renderer.js` is enough.
+
 Alternatively, without the workflow, open **Settings → Pages**, select **Deploy from a branch**, choose the repository's main branch and `/ (root)`, and save.
 
 ## Controls

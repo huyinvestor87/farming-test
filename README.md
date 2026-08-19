@@ -8,7 +8,9 @@ ES modules require an HTTP origin. From this directory run `python3 -m http.serv
 
 ## Deploy to GitHub Pages
 
-Push the repository to GitHub, open **Settings → Pages**, select **Deploy from a branch**, choose the repository's main branch and `/ (root)`, and save. Every URL in the game is relative, so it works at `username.github.io/repository-name/` without configuration or secrets.
+A workflow at `.github/workflows/deploy-pages.yml` deploys the site automatically on every push to `main` using `actions/upload-pages-artifact` and `actions/deploy-pages`. To enable it, open **Settings → Pages** and set **Source** to **GitHub Actions** (one-time setup). Every URL in the game is relative, so it works at `username.github.io/repository-name/` without further configuration or secrets.
+
+Alternatively, without the workflow, open **Settings → Pages**, select **Deploy from a branch**, choose the repository's main branch and `/ (root)`, and save.
 
 ## Controls
 

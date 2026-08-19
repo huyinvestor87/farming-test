@@ -1,0 +1,1 @@
+export class Camera{constructor(){this.x=0;this.y=-80;this.zoom=1}pan(dx,dy){this.x+=dx;this.y+=dy;this.x=Math.max(-900,Math.min(900,this.x));this.y=Math.max(-700,Math.min(500,this.y))}setZoom(v,cx,cy){const old=this.zoom;this.zoom=Math.max(.65,Math.min(1.8,v));this.x=cx-(cx-this.x)*this.zoom/old;this.y=cy-(cy-this.y)*this.zoom/old}}

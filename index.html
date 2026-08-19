@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+  <meta name="theme-color" content="#78c96b"><title>Willowbrook Farm</title>
+  <link rel="icon" href="favicon.svg"><link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+  <div id="loading"><div class="logo"><span>W</span><h1>Willowbrook Farm</h1><p>Plant a little happiness</p></div><div class="loadbar"><i></i></div><small id="loadTip">Growing wildflowers…</small><div id="menuActions" class="hidden"><button data-menu="continue">Continue</button><button data-menu="new">New Game</button><button data-menu="settings">Settings</button><button data-menu="import">Import Save</button><button data-menu="credits">Credits</button></div></div>
+  <main id="game" class="hidden">
+    <canvas id="world" aria-label="Interactive isometric farm"></canvas>
+    <header id="hud"><button class="profile" data-action="character"><b id="level">1</b><span>LEVEL</span></button><div class="meter xp"><i id="xpbar"></i></div><button class="pill"><i class="energy"></i><b id="energy">30</b></button><button class="pill"><i class="coin"></i><b id="coins">0</b></button><button class="pill"><i class="gem"></i><b id="gems">0</b></button></header>
+    <aside class="right-tools"><button data-action="quests" title="Quests">✓</button><button data-action="orders" title="Orders">▤</button><button data-action="settings" title="Settings">⚙</button><button data-action="zoomIn">＋</button><button data-action="zoomOut">−</button></aside>
+    <div id="weather"><b>Willowbrook</b><span id="daypart">Sunny morning</span></div>
+    <div id="tutorial"><b id="tutTitle">Welcome, farmer!</b><span id="tutText">Drag to explore your new farm.</span><button id="tutNext">Got it</button><button id="tutSkip">Skip</button></div>
+    <nav id="dock"><button data-action="farm" class="active"><i>⌂</i><span>Farm</span></button><button data-action="seeds"><i>♧</i><span>Plant</span></button><button data-action="animals"><i>♘</i><span>Animals</span></button><button data-action="craft"><i>♨</i><span>Make</span></button><button data-action="fish"><i>◜</i><span>Fish</span></button><button data-action="market"><i>▱</i><span>Market</span></button><button data-action="inventory"><i>▣</i><span>Barn</span></button><button data-action="build"><i>⚒</i><span>Build</span></button></nav>
+    <section id="panel" class="panel hidden"><header><div><small id="panelKicker">WILLOWBROOK</small><h2 id="panelTitle">Inventory</h2></div><button id="panelClose">×</button></header><div id="panelTabs"></div><div id="panelBody"></div></section>
+    <div id="toast"></div><div id="placement" class="hidden"><span>Tap a free tile to place</span><button data-place="rotate">Rotate</button><button data-place="cancel">Cancel</button></div>
+    <input id="importFile" type="file" accept="application/json" hidden>
+  </main>
+  <script type="module" src="src/main.js"></script>
+</body></html>

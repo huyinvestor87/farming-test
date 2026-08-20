@@ -16,7 +16,7 @@ A workflow at `.github/workflows/deploy-pages.yml` deploys the site automaticall
 
 ### Cache busting
 
-`index.html`'s stylesheet/script tags and every relative `import` between `src/*.js` modules carry a shared `?v=YYYYMMDD` query string (currently `20260819`), so browsers and GitHub Pages' CDN always fetch the latest file after a deploy instead of serving a stale cached copy. There is no build step to generate this automatically, so **bump that version string in every file whenever you ship a JS/CSS change** — a project-wide find-and-replace of the old value for a new one (e.g. today's date) across `index.html`, `src/main.js`, and `src/rendering/Renderer.js` is enough.
+`index.html`'s stylesheet/script tags and every relative `import` between `src/*.js` modules carry a shared `?v=YYYYMMDD` query string (currently `20260820`), so browsers and GitHub Pages' CDN always fetch the latest file after a deploy instead of serving a stale cached copy. There is no build step to generate this automatically, so **bump that version string in every file whenever you ship a JS/CSS change** — a project-wide find-and-replace of the old value for a new one (e.g. today's date) across `index.html`, `src/main.js`, and `src/rendering/Renderer.js` is enough.
 
 Alternatively, without the workflow, open **Settings → Pages**, select **Deploy from a branch**, choose the repository's main branch and `/ (root)`, and save.
 
@@ -24,7 +24,7 @@ Alternatively, without the workflow, open **Settings → Pages**, select **Deplo
 
 ### Desktop
 
-* Click a farm tile or object to interact; drag the world to pan.
+* Click a farm tile or object to interact; your farmer walks there. Click empty ground any time to move around the farm. Drag the world to pan the camera.
 * Use the mouse wheel or the `+`/`−` buttons to zoom.
 * Use the bottom dock to plant, care for animals, craft, fish, sell, inspect storage, and build.
 * Press the `?` button at any time for the illustrated eight-step **How to Play** guide.
@@ -69,7 +69,7 @@ Refresh after editing; no compilation is required.
 
 ## Advanced garden systems
 
-The Plant screen is a rotating seed shop. Buying a pack adds three seeds and equips that variety; limited Watermelon and Chili Pepper stock alternates every five minutes. Purchased seeds are consumed when planted, while harvested produce is stored separately for crafting or sale.
+The Plant screen is a rotating seed shop. Buying a pack adds three seeds and equips that variety for planting; once a variety is owned its card switches to a free "Plant now" button so you can keep replanting it without repurchasing. Limited Watermelon and Chili Pepper stock alternates every five minutes. Purchased seeds are consumed when planted, while harvested produce is stored separately for crafting or sale. Planting only works on the raised brown soil bed in the middle of the farm — tapping ground outside it walks your farmer there and explains where to plant instead.
 
 Rare harvest rolls can produce **Giant**, **Colorful**, **Shiny**, or **Godly** mutations, awarding increasingly valuable coin and XP bonuses. The Build screen also sells three permanent sprinkler tiers and three farm pets. Sprinklers accelerate newly planted crops, while pets improve growth, crop value, or mutation luck. These systems are stored in the versioned local save and continue to work with offline crop timers.
 
